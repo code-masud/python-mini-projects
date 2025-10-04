@@ -1,4 +1,4 @@
-# python-mini-projects
+# Python Mini Projects
 A collection of simple project with Python using Object-Oriented Programming (OOP) principles
 
 Description: For this project, we only need standard library modules. No external dependencies required
