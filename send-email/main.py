@@ -1,6 +1,6 @@
 from models import Gmail, Outlook
 
-def demonstrated_function():
+def demonstrated_email():
     print("=== Welcome Email Sender ===")
 
     sender = input('Enter sender email(ex: from@gmail.com): ')
