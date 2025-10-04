@@ -39,7 +39,7 @@ def demonstrated_email():
 
 def main():
     try:
-        demonstrated_function()
+        demonstrated_email()
     except Exception as e:
         print(f"An error found: {e}")
         return 1
