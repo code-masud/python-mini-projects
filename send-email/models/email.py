@@ -3,7 +3,7 @@ import ssl
 from email.message import EmailMessage
 
 class Email(ABC):
-    def __init__(self, host, port, sender, password):
+    def __init__(self, host: str, port: int, sender: str, password: str):
         self.host = host
         self.port = port
         self.sender = sender
@@ -11,7 +11,7 @@ class Email(ABC):
         self.context = ssl.create_default_context()
 
     @abstractmethod
-    def create_email(self, receiver, subject, text_body, html_body = None, attachment_path = None) -> EmailMessage:
+    def create_email(self, receiver: str, subject: str, text_body: str, html_body: str = None, attachment_path: str = None) -> EmailMessage:
         pass
 
     @abstractmethod

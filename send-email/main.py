@@ -6,9 +6,10 @@ def demonstrated_email():
     sender = input('Enter sender email(ex: from@gmail.com): ')
     password = input('Enter app password(ex: asdf quio zxcv uiop): ')
     receiver = input('Enter receiver email(ex.to@gmail.com): ')
-    sub = input("Enter subject: ")
-    body = input('Enter body: ')
-    html = input("Enter html template: ")
+    sub = input("Enter email subject: ")
+    body = input('Enter email body: ')
+    html = input("Enter raw html template: ") if input("Do you have html template? (y/n): ") == 'y' else None
+    attachment = input("Enter file path: ") if input("Do you have attachment? (y/n): ") == 'y' else None
 
     if sender and password and receiver and sub and body:
         print("Select SMTP Server")
@@ -23,14 +24,14 @@ def demonstrated_email():
                     port = 465
                     
                     gmail = Gmail(host, port, sender, password)
-                    message = gmail.create_email(receiver, sub, body, html)
+                    message = gmail.create_email(receiver, sub, body, html, attachment)
                     gmail.send_email(message)
                 case 2:
                     host = "smtp.office365.com"
                     port = 587
 
                     outlook = Outlook(host, port, sender, password)
-                    message = outlook.create_email(receiver, sub, body, html)
+                    message = outlook.create_email(receiver, sub, body, html, attachment)
                     outlook.send_email(message)
                 case _:
                     print("Invalid option selected")

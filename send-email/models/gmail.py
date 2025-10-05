@@ -1,16 +1,29 @@
-from .email import Email
+import os
+import mimetypes
 import smtplib
 from email.message import EmailMessage
+from .email import Email
 
 class Gmail(Email):
 
-    def create_email(self, receiver, subject, text_body, html_body = None, attachment_path = None) -> EmailMessage:
+    def create_email(self, receiver: str, subject: str, text_body: str, html_body: str = None, attachment_path: str = None) -> EmailMessage:
         msg = EmailMessage()
         msg['Subject'] = subject
         msg['From'] = self.sender
         msg['To'] = receiver
         msg.set_content(text_body)
-        if html_body: msg.add_alternative(html_body, subtype='html')
+
+        if html_body:
+            msg.add_alternative(html_body, subtype='html')
+
+        if attachment_path:
+            if os.path.exists(attachment_path):
+                mime_type, encoding = mimetypes.guess_type(attachment_path)
+                maintype, subtype = mime_type.split("/")
+                with open(attachment_path, 'rb') as file:
+                    msg.add_attachment(file.read(), maintype=maintype, subtype=subtype, filename=os.path.basename(attachment_path))
+            else:
+                raise FileNotFoundError(f"Attachment not found: {attachment_path}")
         return msg
 
     def send_email(self, message: EmailMessage):
