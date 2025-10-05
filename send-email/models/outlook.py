@@ -6,7 +6,7 @@ from .email import Email
 
 class Outlook(Email):
 
-    def create_email(self, receiver: str, subject: str, text_body: str, html_body: str = None, attachment_path: str = None) -> EmailMessage:
+    def create_message(self, receiver: str, subject: str, text_body: str, html_body: str = None, attachment_path: str = None) -> EmailMessage:
         msg = EmailMessage()
         msg['Subject'] = subject
         msg['From'] = self.sender
