@@ -27,7 +27,7 @@ class Outlook(Email):
         return msg
 
     def send_email(self, message: EmailMessage):
-        print(f"{super().__str__()}")
+        print(f"\n{super().__str__()}")
         print("Please wait...")
         try:
             with smtplib.SMTP(self.host, self.port) as server:
